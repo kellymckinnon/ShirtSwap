@@ -60,9 +60,9 @@ public class CardAdapter extends BaseAdapter {
         holder.username.setText(model.user.getFirstName());
         holder.description.setText(model.description);
         holder.tags.setText(model.tag);
-        holder.size.setText(model.size.toString());
+        holder.size.setText(model.size);
 
-        Picasso.with(context).load(model.user.getLargePictureURL()).into(holder.image);
+        Picasso.with(context).load(model.url).into(holder.image);
 
         return convertView;
     }

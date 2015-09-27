@@ -1,5 +1,6 @@
 package me.kellymckinnon.shirtswap;
 
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.util.Log;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
+import com.parse.GetDataCallback;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseException;
@@ -112,11 +115,14 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
                         shirtOwner.setFirstName(po.getString("user"));
                         shirtOwner.setId(po.getString("userID"));
 
+                        ParseFile postImage = po.getParseFile("image");
+
                         Shirt shirt = new Shirt();
                         shirt.user = shirtOwner;
                         shirt.description = po.getString("description");
                         shirt.size = po.getString("size");
                         shirt.tag = po.getString("tag");
+                        shirt.url = Uri.parse(postImage.getUrl());
 
                         shirts.add(shirt);
                     }

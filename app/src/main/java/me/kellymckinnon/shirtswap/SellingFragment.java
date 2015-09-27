@@ -1,12 +1,18 @@
 package me.kellymckinnon.shirtswap;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +27,19 @@ public class SellingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_selling, container, false);
+
+        User user = UserDataSource.getCurrentUser();
+//        ArrayList<Shirt> shirts = user.getShirts();
+
+        GridView gridview = (GridView) v.findViewById(R.id.gridview);
+//        gridview.setAdapter(new Image(this));
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Toast.makeText(getActivity(),"hello world", Toast.LENGTH_SHORT);
+            }
+        });
 
         Button b = (Button) v.findViewById(R.id.list_button);
         b.setOnClickListener(new View.OnClickListener() {
