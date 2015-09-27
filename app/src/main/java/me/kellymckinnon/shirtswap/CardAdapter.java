@@ -62,7 +62,7 @@ public class CardAdapter extends BaseAdapter {
         Shirt model = cardList.get(position);
         holder.username.setText(model.user.getFirstName());
         holder.description.setText(model.description);
-        holder.tags.setText(model.tags[0]);
+        holder.tags.setText(model.tag);
         holder.size.setText(model.size.toString());
 
         Picasso.with(context).load(model.user.getLargePictureURL()).into(holder.image);

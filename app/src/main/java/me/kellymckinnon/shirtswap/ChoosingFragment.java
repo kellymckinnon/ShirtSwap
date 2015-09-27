@@ -102,7 +102,7 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
             shirt.user = user;
             shirt.description = String.valueOf(i);
             shirt.size = "MEDIUM";
-            shirt.tags = new String[]{"#yo"};
+            shirt.tag = "#yo";
             shirts.add(shirt);
             i++;
         }
