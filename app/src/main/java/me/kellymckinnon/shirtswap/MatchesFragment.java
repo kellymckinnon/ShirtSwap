@@ -73,7 +73,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
     public void onUsersFetched(List<User> users) {
         mMatches.clear();
         for (User user : users) {
-            Match match = new Match("http://dummyimage.com/600x400/000/fff", "http://dummyimage.com/600x400/123/fff", user); // TODO USE IMAGES
+            Match match = new Match("id1", "http://dummyimage.com/600x400/000/fff", "id2", "http://dummyimage.com/600x400/123/fff", user); // TODO USE IMAGES
             mMatches.add(match);
         }
 

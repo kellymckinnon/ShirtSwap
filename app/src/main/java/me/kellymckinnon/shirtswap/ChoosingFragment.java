@@ -17,7 +17,9 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseException;
+import com.parse.GetCallback;
 import com.parse.FindCallback;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +70,63 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
                 Toast.makeText(getActivity(), "Right!", Toast.LENGTH_SHORT).show();
                 flingContainer.requestLayout();
 //                ActionDataSource.saveUserSkipped(user.getId());
+                if(o instanceof Shirt) {
+                    final User currentUser = UserDataSource.getCurrentUser();
+                    final Shirt likedShirt = (Shirt)o;
+                    currentUser.addLikedShirt(likedShirt.id);
+
+                    // check for match
+                    // if other user has liked one of my shirts then match
+                    List<String> otherUserLikedShirts = likedShirt.user.getLikedShirts();
+                    List<String> myShirts = currentUser.getShirts();
+
+                    for(String shirtID : myShirts) {
+                        final String shirtIDCopy = shirtID;
+                        if(otherUserLikedShirts.contains(shirtID)) {
+                            // there's a match bitches!!!
+                            // get Shirt URL from parse
+                            ParseQuery<ParseObject> query = ParseQuery.getQuery("Shirt");
+                            query.getInBackground(shirtID, new GetCallback<ParseObject>() {
+                                public void done(ParseObject object, ParseException e) {
+                                    if (e == null) {
+                                        ParseFile postImage = object.getParseFile("image");
+                                        final ParseObject yourMatch = new ParseObject("Match");
+
+                                        yourMatch.put("yourShirtID", shirtIDCopy);
+                                        yourMatch.put("yourShirtURL", Uri.parse(postImage.getUrl()));
+                                        yourMatch.put("theirShirtID", likedShirt.id);
+                                        yourMatch.put("theirShirtURL", likedShirt.url);
+                                        yourMatch.put("otherUserID", likedShirt.user.getId());
+                                        yourMatch.saveInBackground(new SaveCallback() {
+                                            @Override
+                                            public void done(ParseException parseException) {
+                                                currentUser.addMatch(yourMatch.getObjectId());
+                                            }
+                                        });
+
+                                        final ParseObject theirMatch = new ParseObject("Match");
+                                        theirMatch.put("yourShirtID", likedShirt.id);
+                                        theirMatch.put("yourShirtURL", likedShirt.url);
+                                        theirMatch.put("theirShirtID", shirtIDCopy);
+                                        theirMatch.put("theirShirtURL", Uri.parse(postImage.getUrl()));
+                                        theirMatch.put("otherUserID", currentUser.getId());
+                                        theirMatch.saveInBackground(new SaveCallback() {
+                                            @Override
+                                            public void done(ParseException parseException) {
+                                                likedShirt.user.addMatch(theirMatch.getObjectId());
+                                            }
+                                        });
+                                    } else {
+                                        // something went wrong
+                                    }
+                                }
+                            });
+                        }
+                    }
+                } else {
+                  // Something went wrong...
+                }
+
             }
 
             @Override
@@ -121,6 +180,7 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
                         ParseFile postImage = po.getParseFile("image");
 
                         Shirt shirt = new Shirt();
+                        shirt.id = po.getObjectId();
                         shirt.user = shirtOwner;
                         shirt.description = po.getString("description");
                         shirt.size = po.getString("size");

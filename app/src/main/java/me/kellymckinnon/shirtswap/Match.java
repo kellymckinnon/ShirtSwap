@@ -5,12 +5,16 @@ package me.kellymckinnon.shirtswap;
  * also liked their shirt(s).
  */
 public class Match {
+    String yourShirtID;
     String yourShirtUrl;
+    String theirShirtID;
     String theirShirtUrl;
     User otherUser;
 
-    Match(String yourShirtUrl, String theirShirtUrl, User otherUser) {
+    Match(String yourShirtID, String yourShirtUrl, String theirShirtID, String theirShirtUrl, User otherUser) {
+        this.yourShirtID = yourShirtID;
         this.yourShirtUrl = yourShirtUrl;
+        this.theirShirtID = theirShirtID;
         this.theirShirtUrl = theirShirtUrl;
         this.otherUser = otherUser;
     }
