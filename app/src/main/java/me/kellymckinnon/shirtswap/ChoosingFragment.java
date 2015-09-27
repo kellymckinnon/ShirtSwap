@@ -7,8 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
+
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseException;
+import com.parse.FindCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,19 +101,31 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
 
     @Override
     public void onUsersFetched(List<User> users) {
-        List<Shirt> shirts = new ArrayList<>();
-        int i = 0; // just for testing
-        for (User user : users) {
-            Shirt shirt = new Shirt();
-            shirt.user = user;
-            shirt.description = String.valueOf(i);
-            shirt.size = "MEDIUM";
-            shirt.tag = "#yo";
-            shirts.add(shirt);
-            i++;
-        }
+        final List<Shirt> shirts = new ArrayList<>();
 
-        mCardAdapter.addCards(shirts);
-        mCardAdapter.notifyDataSetChanged();
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Shirt");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> markers, ParseException e) {
+                if (e == null) {
+                    for (ParseObject po : markers) {
+                        User shirtOwner = new User();
+                        shirtOwner.setFirstName(po.getString("user"));
+                        shirtOwner.setId(po.getString("userID"));
+
+                        Shirt shirt = new Shirt();
+                        shirt.user = shirtOwner;
+                        shirt.description = po.getString("description");
+                        shirt.size = po.getString("size");
+                        shirt.tag = po.getString("tag");
+
+                        shirts.add(shirt);
+                    }
+                    mCardAdapter.addCards(shirts);
+                    mCardAdapter.notifyDataSetChanged();
+                } else {
+                    Log.e("LOL","done fucked up");
+                }
+            }
+        });
     }
 }
