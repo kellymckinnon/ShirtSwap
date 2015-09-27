@@ -37,5 +37,6 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.4.0+'
     compile 'com.github.navasmdc:MaterialDesign:1.5@aar'
     compile 'com.nineoldandroids:library:2.4.0+'
+    compile 'com.android.support:recyclerview-v7:21.0.+'
 }
 

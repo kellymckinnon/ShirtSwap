@@ -71,7 +71,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        me.kellymckinnon.shirtswap.MessageDataSource.stop(mListener);
+        MessageDataSource.stop(mListener);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         msg.setText(newMessage);
         msg.setSender(me.kellymckinnon.shirtswap.UserDataSource.getCurrentUser().getId());
 
-        me.kellymckinnon.shirtswap.MessageDataSource.saveMessage(msg, mConvoId);
+        MessageDataSource.saveMessage(msg, mConvoId);
     }
 
     @Override

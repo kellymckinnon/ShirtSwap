@@ -3,13 +3,12 @@ package me.kellymckinnon.shirtswap;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +19,12 @@ import java.util.List;
 public class MatchesFragment extends Fragment implements ActionDataSource.ActionDataCallbacks, me.kellymckinnon.shirtswap.UserDataSource.UserDataCallbacks, AdapterView.OnItemClickListener {
 
     private static final String TAG = "MatchesFragment";
-    private MatchesAdapter mAdapter;
-    private ArrayList<me.kellymckinnon.shirtswap.User> mUsers;
+    private MatchAdapter mAdapter;
+    private List<Match> mMatches;
 
     public MatchesFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,11 +34,17 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
         View v = inflater.inflate(R.layout.fragment_matches, container, false);
 
-        ListView matchesListView = (ListView) v.findViewById(R.id.matches_list);
-        mUsers = new ArrayList<>();
-        mAdapter = new MatchesAdapter(mUsers);
-        matchesListView.setAdapter(mAdapter);
-        matchesListView.setOnItemClickListener(this);
+        RecyclerView rv = (RecyclerView) v.findViewById(R.id.matches_list);
+        rv.setHasFixedSize(true);
+
+        mMatches = new ArrayList<Match>();
+
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(llm);
+
+        mAdapter = new MatchAdapter(mMatches, getActivity());
+        rv.setAdapter(mAdapter);
+
         return v;
     }
 
@@ -55,30 +59,20 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
     @Override
     public void onUsersFetched(List<User> users) {
-        mUsers.clear();
-        mUsers.addAll(users);
+        mMatches.clear();
+        for (User user : users) {
+            Match match = new Match("http://dummyimage.com/600x400/000/fff", "http://dummyimage.com/600x400/123/fff", user); // TODO USE IMAGES
+            mMatches.add(match);
+        }
+
         mAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        User user = mUsers.get(position);
+        User user = mMatches.get(position).otherUser;
         Intent intent = new Intent(getActivity(), ChatActivity.class);
         intent.putExtra(ChatActivity.USER_EXTRA, user);
         startActivity(intent);
-    }
-
-    public class MatchesAdapter extends ArrayAdapter<me.kellymckinnon.shirtswap.User> {
-
-        MatchesAdapter(List<User> users) {
-            super(MatchesFragment.this.getActivity(), android.R.layout.simple_list_item_1, users);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TextView v = (TextView) super.getView(position, convertView, parent);
-            v.setText(getItem(position).getFirstName());
-            return v;
-        }
     }
 }
