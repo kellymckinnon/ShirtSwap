@@ -129,10 +129,27 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     @Override
     public void onPageSelected(int position) {
-        mChoosingIcon.setSelected(!mChoosingIcon.isSelected());
-        mMatchesIcon.setSelected(!mMatchesIcon.isSelected());
+        switch (position) {
+            case 0:
+                mChoosingIcon.setSelected(true);
+                mMatchesIcon.setSelected(false);
+                mSellingIcon.setSelected(false);
+                break;
+            case 1:
+                mChoosingIcon.setSelected(false);
+                mMatchesIcon.setSelected(true);
+                mSellingIcon.setSelected(false);
+                break;
+            case 2:
+                mChoosingIcon.setSelected(false);
+                mMatchesIcon.setSelected(false);
+                mSellingIcon.setSelected(true);
+                break;
+        }
+
         toggleColor(mChoosingIcon);
         toggleColor(mMatchesIcon);
+        toggleColor(mSellingIcon);
     }
 
     @Override
@@ -140,11 +157,34 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     }
 
+    /**
+     * Makes the selected tab heading white and the others gray.
+     * @param v view to change
+     */
     private void toggleColor(ImageView v) {
         if(v.isSelected()) {
             v.setColorFilter(null);
         } else {
             v.setColorFilter(getResources().getColor(R.color.primary_gray));
+        }
+    }
+
+    public void onSizePreferenceClicked(View view) {
+        // TODO: SAVE SIZE PREFERENCE TO PARSE
+
+        switch(view.getId()) {
+            case R.id.size_small:
+                // Set small size
+                break;
+            case R.id.size_medium:
+                // Set medium size
+                break;
+            case R.id.large:
+                // Set large size
+                break;
+            case R.id.size_xl:
+                // Set xl size
+                break;
         }
     }
 

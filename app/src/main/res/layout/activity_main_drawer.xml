@@ -1,44 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer"
     android:layout_width="240dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:orientation="vertical"
     android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:background="@drawable/bottom_border"
         android:layout_height="wrap_content">
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@android:id/text1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="14sp"
             android:text="Size: "
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
             android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/size_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S"
+                android:onClick="onSizePreferenceClicked"/>
+            <RadioButton android:id="@+id/size_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M"
+                android:onClick="onSizePreferenceClicked"/>
+            <RadioButton android:id="@+id/size_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L"
+                android:onClick="onSizePreferenceClicked"/>
+            <RadioButton android:id="@+id/size_xl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XL"
+                android:onClick="onSizePreferenceClicked"/>
+        </RadioGroup>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/edit_profile"
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        style="?android:attr/borderlessButtonStyle"
-        android:background="@drawable/bottom_border"
-        android:text="@string/edit_profile"/>
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="Maximum Distance: "
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:gravity="center_vertical" />
 
-    <Button
-        android:id="@+id/log_out"
+    <com.gc.materialdesign.views.Slider
+        android:id="@+id/slider"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:text="@string/log_out"
-        style="?android:attr/borderlessButtonStyle"
+        android:layout_height="wrap_content"
+        android:background="@color/primary_gray"
+        materialdesign:max="50"
+        materialdesign:min="0"
+        materialdesign:showNumberIndicator="true"/>
+
+    <ImageView
+        android:id="@+id/border"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/bottom_border"/>
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textSize="14sp"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:background="@drawable/bottom_border"/>
 
 </LinearLayout>
