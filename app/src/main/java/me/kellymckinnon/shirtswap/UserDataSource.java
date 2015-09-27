@@ -17,6 +17,9 @@ public class UserDataSource {
     private static final String COLUMN_PICTURE_URL = "pictureURL";
     private static final String COLUMN_FACEBOOK_ID = "facebookId";
     private static final String COLUMN_ID = "objectId";
+    private static final String COLUMN_SHIRTS = "shirts";
+    private static final String COLUMN_LIKED_SHIRTS = "likedShirts";
+    private static final String COLUMN_MATCHES = "matches";
 
     public static User getCurrentUser() {
         if(sCurrentUser == null && ParseUser.getCurrentUser() != null) {
@@ -81,6 +84,9 @@ public class UserDataSource {
         user.setPictureURL(parseUser.getString(COLUMN_PICTURE_URL));
         user.setId(parseUser.getObjectId());
         user.setFacebookId(parseUser.getString(COLUMN_FACEBOOK_ID));
+        user.setShirts(parseUser.getList(COLUMN_SHIRTS));
+        user.setLikedShirts(parseUser.getList(COLUMN_LIKED_SHIRTS));
+        user.setMatches(parseUser.getList(COLUMN_MATCHES));
         return user;
     }
 

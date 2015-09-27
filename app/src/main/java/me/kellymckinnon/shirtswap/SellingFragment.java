@@ -16,6 +16,8 @@ import android.widget.Spinner;
 
 import com.parse.ParseObject;
 import com.parse.ParseFile;
+import com.parse.SaveCallback;
+import com.parse.ParseException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,9 +62,9 @@ public class SellingFragment extends Fragment {
 
     private void uploadShirt() {
         // DO SHIT HERE
-        ParseObject newShirt = new ParseObject("Shirt");
+        final ParseObject newShirt = new ParseObject("Shirt");
 
-        User currentUser = UserDataSource.getCurrentUser();
+        final User currentUser = UserDataSource.getCurrentUser();
         String username = (currentUser != null) ? currentUser.getFirstName() : "wtf";
         String userID = (currentUser != null) ? currentUser.getId() : "wtf";
 
@@ -80,7 +82,12 @@ public class SellingFragment extends Fragment {
         newShirt.put("tag", shirtTag.getText().toString());
         newShirt.put("description", shirtDesc.getText().toString());
         newShirt.put("size", shirtSize.getSelectedItem().toString());
-        newShirt.saveInBackground();
+        newShirt.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException parseException) {
+                currentUser.addShirt(newShirt.getObjectId());
+            }
+        });
 
         // we need to somehow show that it was successful
         // maybe segue into prev screen if this is a popup/dialog

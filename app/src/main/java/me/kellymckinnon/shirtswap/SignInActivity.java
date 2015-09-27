@@ -22,6 +22,7 @@ import com.parse.SaveCallback;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SignInActivity extends AppCompatActivity {
