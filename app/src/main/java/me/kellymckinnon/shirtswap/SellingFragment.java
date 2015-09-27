@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 
+import com.gc.materialdesign.views.ButtonRectangle;
+
 import java.util.ArrayList;
 
 /**
@@ -42,7 +44,7 @@ public class SellingFragment extends Fragment {
             }
         });
 
-        Button b = (Button) v.findViewById(R.id.list_button);
+        ButtonRectangle b = (ButtonRectangle) v.findViewById(R.id.list_button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

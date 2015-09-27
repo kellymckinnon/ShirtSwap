@@ -48,7 +48,6 @@
         android:textSize="16sp"
         tools:text="MEDIUM" />
 
-
 </RelativeLayout>
 
 

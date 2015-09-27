@@ -43,6 +43,7 @@ public class ListingGridAdapter extends BaseAdapter {
         }
 
         Picasso.with(mContext).load(mShirts.get(position).url).into(imageView);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         return imageView;
     }
 

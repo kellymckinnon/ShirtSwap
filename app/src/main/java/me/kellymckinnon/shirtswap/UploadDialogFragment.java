@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -46,7 +47,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
     EditText shirtTag;
     Spinner shirtSize;
     ImageView image;
-    Button uploadButton;
+    ButtonRectangle uploadButton;
     Fragment parentFragment;
     private byte[] imageBytes;
 
@@ -79,7 +80,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
             }
         });
 
-        uploadButton = (Button) v.findViewById(R.id.upload);
+        uploadButton = (ButtonRectangle) v.findViewById(R.id.upload);
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

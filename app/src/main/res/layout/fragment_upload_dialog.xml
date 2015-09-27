@@ -42,11 +42,12 @@
         android:hint="Description of your shirt (optional)"
         android:maxLines="2" />
 
-    <Button
+    <com.gc.materialdesign.views.ButtonRectangle
         android:id="@+id/upload"
-        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
+        android:background="@color/primary_dark"
         android:text="UPLOAD" />
 </LinearLayout>

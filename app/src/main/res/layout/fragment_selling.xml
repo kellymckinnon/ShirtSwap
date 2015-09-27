@@ -10,19 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        android:layout_weight="9"
-        android:columnWidth="100dp"
+        android:layout_weight="8"
+        android:columnWidth="150dp"
         android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
+        android:horizontalSpacing="5dp"
+        android:numColumns="2"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="5dp" />
 
-    <Button
+    <com.gc.materialdesign.views.ButtonRectangle
         android:id="@+id/list_button"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:text="List a new item" />
+        android:layout_height="0dp"
+        android:background="@color/primary_dark"
+        android:layout_weight="1.5"
+        android:text="LIST A NEW ITEM" />
 </LinearLayout>
