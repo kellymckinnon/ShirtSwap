@@ -17,6 +17,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.facebook.FacebookActivity" />
+        <activity android:name="com.facebook.FacebookActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".SignInActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_sign_in" >
         </activity>
         <activity
             android:name=".ChatActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_chat"
             android:theme="@style/ChatTheme">
         </activity>

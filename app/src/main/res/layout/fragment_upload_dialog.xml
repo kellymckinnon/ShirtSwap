@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_margin="16dp"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:layout_width="300dp"
+        android:padding="30dp"
+        android:layout_height="300dp"
+        android:id="@+id/upload_image"
+        android:src="@android:drawable/ic_menu_camera"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center" />
+
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/shirt_size"
+        android:spinnerMode="dropdown"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shirt_description"
+        android:hint="Description of your shirt (optional)"
+        android:maxLines="2"
+        android:gravity = "center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Company or other tag"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/shirt_tag" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="UPLOAD"
+        android:id="@+id/upload"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"
+        />
+</LinearLayout>
