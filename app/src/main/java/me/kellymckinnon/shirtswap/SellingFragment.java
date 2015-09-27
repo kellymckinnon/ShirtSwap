@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Spinner;
 
 import com.parse.ParseObject;
 import com.parse.ParseFile;
@@ -23,16 +25,28 @@ import java.util.List;
  */
 public class SellingFragment extends Fragment {
 
+    EditText shirtDesc;
+    EditText shirtTag;
+    Spinner shirtSize;
 
     public SellingFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_selling, container, false);
+
+        Spinner shirtSizes = (Spinner) v.findViewById(R.id.spShirtSize);
+        String[] sizes = new String[]{"S", "M", "L", "XL", "XXL"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sizes);
+        shirtSizes.setAdapter(adapter);
+
+        shirtDesc = (EditText) v.findViewById(R.id.tbShirtDesc);
+        shirtTag = (EditText) v.findViewById(R.id.tbShirtTag);
+        shirtSize = (Spinner) v.findViewById(R.id.spShirtSize);
+
         Button b = (Button) v.findViewById(R.id.upload);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,21 +62,28 @@ public class SellingFragment extends Fragment {
         // DO SHIT HERE
         ParseObject newShirt = new ParseObject("Shirt");
 
-        // TODO: use user input
         User currentUser = UserDataSource.getCurrentUser();
         String username = (currentUser != null) ? currentUser.getFirstName() : "wtf";
         String userID = (currentUser != null) ? currentUser.getId() : "wtf";
 
+//// This is the logic for saving the image uploaded or taken
+//// will probably be moved
 //        byte[] imgData = "Temp String".getBytes();
-//        ParseFile imgFile = new ParseFile("shirtImage.png", imgData);
+//        ParseFile imgFile = new ParseFile("shirtImage.jpeg", imgData);
+//        imgFile.saveInBackground();
+
+//// After the async save happens then we
 //        newShirt.put("image", imgFile);
-        
+
         newShirt.put("user", username);
         newShirt.put("userID", userID);
-        newShirt.put("tag", "Microsoft");
-        newShirt.put("description", "my awesome shirt");
-        newShirt.put("size", "XL");
+        newShirt.put("tag", shirtTag.getText().toString());
+        newShirt.put("description", shirtDesc.getText().toString());
+        newShirt.put("size", shirtSize.getSelectedItem().toString());
         newShirt.saveInBackground();
+
+        // we need to somehow show that it was successful
+        // maybe segue into prev screen if this is a popup/dialog
     }
 
 

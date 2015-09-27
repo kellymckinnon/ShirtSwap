@@ -1,12 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tbShirtDesc"
+        android:maxLines="2"
+        android:layout_gravity="center"
+        android:layout_above="@+id/upload"
+        android:layout_alignLeft="@+id/lbShirtDesc"
+        android:layout_alignStart="@+id/lbShirtDesc" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Description"
+        android:id="@+id/lbShirtDesc"
+        android:layout_above="@+id/tbShirtDesc"
+        android:layout_toLeftOf="@+id/upload"
+        android:layout_toStartOf="@+id/upload"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UPLOAD"
         android:id="@+id/upload"
-        android:layout_gravity="center_horizontal"/>
-</LinearLayout>
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Size"
+        android:id="@+id/lbShirtSize"
+        android:layout_marginBottom="60dp"
+        android:layout_above="@+id/lbShirtTag"
+        android:layout_alignLeft="@+id/lbShirtDesc"
+        android:layout_alignStart="@+id/lbShirtDesc" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Company"
+        android:id="@+id/lbShirtTag"
+        android:layout_above="@+id/lbShirtDesc"
+        android:layout_alignLeft="@+id/lbShirtDesc"
+        android:layout_alignStart="@+id/lbShirtDesc"
+        android:layout_marginBottom="50dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spShirtSize"
+        android:layout_alignTop="@+id/lbShirtSize"
+        android:spinnerMode="dropdown"
+        android:layout_alignRight="@+id/tbShirtDesc"
+        android:layout_alignEnd="@+id/tbShirtDesc"
+        android:layout_toRightOf="@+id/upload"
+        android:layout_toEndOf="@+id/upload" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tbShirtTag"
+        android:layout_above="@+id/lbShirtDesc"
+        android:layout_alignLeft="@+id/lbShirtTag"
+        android:layout_alignStart="@+id/lbShirtTag"
+        android:layout_alignRight="@+id/spShirtSize"
+        android:layout_alignEnd="@+id/spShirtSize" />
+</RelativeLayout>
