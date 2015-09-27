@@ -1,13 +1,16 @@
 package me.kellymckinnon.shirtswap;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -17,15 +20,18 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
     List<Match> matches;
     Context context;
+    View.OnClickListener listener;
 
-    MatchAdapter(List<Match> matches, Context context){
+    MatchAdapter(List<Match> matches, Context context, View.OnClickListener listener){
         this.matches = matches;
         this.context = context;
+        this.listener = listener;
     }
 
     @Override
     public MatchAdapter.MatchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.match_list_item, parent, false);
+        v.setOnClickListener(listener);
         MatchViewHolder mvh = new MatchViewHolder(v);
         return mvh;
     }
@@ -57,4 +63,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
             yourShirtPhoto = (ImageView)itemView.findViewById(R.id.your_shirt);
         }
     }
+
+
 }
