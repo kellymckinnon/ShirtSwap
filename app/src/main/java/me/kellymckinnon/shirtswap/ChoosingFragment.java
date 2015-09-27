@@ -20,7 +20,6 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
 
     private static final String TAG = "ChoosingFragment";
 
-    private List<Shirt> mShirts;
     private CardAdapter mCardAdapter;
 
     public ChoosingFragment() {
@@ -36,8 +35,8 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
         final SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) v.findViewById(
                 R.id.swipe_view);
 
-        mShirts = new ArrayList<>();
-        mCardAdapter = new CardAdapter(getActivity(), mShirts);
+        List<Shirt> shirts = new ArrayList<>();
+        mCardAdapter = new CardAdapter(getActivity(), shirts);
 
         flingContainer.setAdapter(mCardAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -96,15 +95,19 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
 
     @Override
     public void onUsersFetched(List<User> users) {
+        List<Shirt> shirts = new ArrayList<>();
         int i = 0; // just for testing
         for (User user : users) {
             Shirt shirt = new Shirt();
             shirt.user = user;
             shirt.description = String.valueOf(i);
-            mShirts.add(shirt);
+            shirt.size = "MEDIUM";
+            shirt.tags = new String[]{"#yo"};
+            shirts.add(shirt);
             i++;
         }
 
+        mCardAdapter.addCards(shirts);
         mCardAdapter.notifyDataSetChanged();
     }
 }

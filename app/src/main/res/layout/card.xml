@@ -9,8 +9,8 @@ android:padding="20dp">
 
 <ImageView
     android:id="@+id/card_image"
-    android:layout_width="300dp"
-    android:layout_height="300dp"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
     android:layout_centerHorizontal="true"
     android:layout_gravity="center"
     android:src="@android:drawable/picture_frame" />
@@ -21,7 +21,7 @@ android:padding="20dp">
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:textColor="@color/primary_text_default_material_dark"
-    android:textSize="12pt"
+    android:textStyle="bold"
     tools:text="Jane Doe"
     android:layout_below="@id/card_image"
     android:layout_centerHorizontal="true" />

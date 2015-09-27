@@ -7,12 +7,5 @@ public class Shirt {
     public User user;
     public String[] tags;
     public String description;
-    public Size size;
-
-    public enum Size {
-        SMALL,
-        MEDIUM,
-        LARGE,
-        XLARGE
-    }
+    public String size;
 }
