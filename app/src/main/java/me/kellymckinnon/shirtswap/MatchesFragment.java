@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,22 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MatchesFragment extends Fragment implements ActionDataSource.ActionDataCallbacks, me.kellymckinnon.shirtswap.UserDataSource.UserDataCallbacks, AdapterView.OnItemClickListener {
+public class MatchesFragment extends Fragment implements ActionDataSource.ActionDataCallbacks, me.kellymckinnon.shirtswap.UserDataSource.UserDataCallbacks, View.OnClickListener {
 
     private static final String TAG = "MatchesFragment";
     private MatchAdapter mAdapter;
     private List<Match> mMatches;
+    private RecyclerView rv;
+
+    @Override
+    public void onClick(View v) {
+        int itemPosition = rv.getChildPosition(v);
+        Match item = mMatches.get(itemPosition);
+        User user = item.otherUser;
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
+        intent.putExtra(ChatActivity.USER_EXTRA, user);
+        startActivity(intent);
+    }
 
     public MatchesFragment() {
         // Required empty public constructor
@@ -34,7 +46,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
         View v = inflater.inflate(R.layout.fragment_matches, container, false);
 
-        RecyclerView rv = (RecyclerView) v.findViewById(R.id.matches_list);
+        rv = (RecyclerView) v.findViewById(R.id.matches_list);
         rv.setHasFixedSize(true);
 
         mMatches = new ArrayList<Match>();
@@ -42,7 +54,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
 
-        mAdapter = new MatchAdapter(mMatches, getActivity());
+        mAdapter = new MatchAdapter(mMatches, getActivity(), this);
         rv.setAdapter(mAdapter);
 
         return v;
@@ -67,12 +79,12 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
         mAdapter.notifyDataSetChanged();
     }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        User user = mMatches.get(position).otherUser;
-        Intent intent = new Intent(getActivity(), ChatActivity.class);
-        intent.putExtra(ChatActivity.USER_EXTRA, user);
-        startActivity(intent);
-    }
+//
+//    @Override
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        User user = mMatches.get(position).otherUser;
+//        Intent intent = new Intent(getActivity(), ChatActivity.class);
+//        intent.putExtra(ChatActivity.USER_EXTRA, user);
+//        startActivity(intent);
+//    }
 }
