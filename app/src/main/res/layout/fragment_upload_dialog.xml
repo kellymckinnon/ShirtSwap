@@ -27,6 +27,7 @@
         android:id="@+id/shirt_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"
         android:hint="Company or other tag" />
