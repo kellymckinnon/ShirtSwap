@@ -46,7 +46,6 @@ public class CardAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.card, parent, false);
             holder = new ViewHolder();
             holder.image = (ImageView) convertView.findViewById(R.id.card_image);
-            holder.username = (TextView) convertView.findViewById(R.id.username);
             holder.description = (TextView) convertView.findViewById(R.id.description);
             holder.tags = (TextView) convertView.findViewById(R.id.tags);
             holder.size = (TextView) convertView.findViewById(R.id.size);
@@ -57,7 +56,6 @@ public class CardAdapter extends BaseAdapter {
         }
 
         Shirt model = cardList.get(position);
-        holder.username.setText(model.user.getFirstName());
         holder.description.setText(model.description);
         holder.tags.setText(model.tag);
         holder.size.setText(model.size);
@@ -77,7 +75,6 @@ public class CardAdapter extends BaseAdapter {
 
     private class ViewHolder {
         public ImageView image;
-        public TextView username;
         public TextView description;
         public TextView tags;
         public TextView size;

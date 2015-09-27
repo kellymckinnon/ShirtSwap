@@ -26,8 +26,8 @@
         <Button
             android:id="@+id/send_message"
             android:text="@string/send"
-            android:background="@color/primary_blue"
             android:textColor="@android:color/white"
+            android:background="@color/primary_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

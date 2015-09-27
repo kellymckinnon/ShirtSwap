@@ -1,5 +1,8 @@
 package me.kellymckinnon.shirtswap;
 
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -14,11 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-
-import me.kellymckinnon.shirtswap.R;
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener, me.kellymckinnon.shirtswap.MessageDataSource.MessagesCallbacks {
 
@@ -129,7 +131,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) nameView.getLayoutParams();
 
             if(message.getSender().equals(UserDataSource.getCurrentUser().getId())) {
-                nameView.setBackground(getResources().getDrawable(R.drawable.bubble_right_green));
+                nameView.setBackground(getResources().getDrawable(R.drawable.bubble_right_blue));
                 layoutParams.gravity = Gravity.END;
             } else {
                 nameView.setBackground(getResources().getDrawable(R.drawable.bubble_left_gray));

@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         if(v.isSelected()) {
             v.setColorFilter(null);
         } else {
-            v.setColorFilter(getResources().getColor(R.color.primary_gray));
+            v.setColorFilter(getResources().getColor(R.color.secondary_text));
         }
     }
 

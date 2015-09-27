@@ -7,12 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 import android.util.Log;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import com.parse.GetDataCallback;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -60,14 +58,12 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
             @Override
             public void onLeftCardExit(Object o) {
                 // Do something on the left; you still have access to the original object
-                Toast.makeText(getActivity(), "Left!", Toast.LENGTH_SHORT).show();
                 flingContainer.requestLayout();
 //                ActionDataSource.saveUserLiked(user.getId());
             }
 
             @Override
             public void onRightCardExit(Object o) {
-                Toast.makeText(getActivity(), "Right!", Toast.LENGTH_SHORT).show();
                 flingContainer.requestLayout();
 //                ActionDataSource.saveUserSkipped(user.getId());
                 if(o instanceof Shirt) {
@@ -131,10 +127,7 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
 
             @Override
             public void onAdapterAboutToEmpty(int i) {
-                //FIXME: This is called twice for some reason (maybe only on genymotion?) when
-                // the adapter is empty at the start
-//                new LoadUsersTask().execute();
-                // Actually load new shit in here from Parse
+                // TODO: Don't fetch all at once; use this
             }
 
             @Override

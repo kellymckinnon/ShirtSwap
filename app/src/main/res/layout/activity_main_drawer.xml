@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:background="@color/primary_gray"
+        android:background="@color/primary_dark"
         materialdesign:max="50"
         materialdesign:min="0"
         materialdesign:showNumberIndicator="true"/>
@@ -112,7 +112,7 @@
         android:text="Logout"
         android:textSize="14sp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:background="@android:color/white"
+        android:background="@color/icons"
         android:gravity="center_vertical"
         android:minHeight="?android:attr/listPreferredItemHeightSmall" />
 

@@ -70,5 +70,6 @@ public class SellingFragment extends Fragment {
     public void notifyDataChanged() {
         mAdapter = new ListingGridAdapter(getActivity(), UserDataSource.getCurrentUserShirts());
         gridview.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 }
