@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.parse.ParseObject;
+import com.parse.ParseFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +46,23 @@ public class SellingFragment extends Fragment {
 
     private void uploadShirt() {
         // DO SHIT HERE
+        ParseObject newShirt = new ParseObject("Shirt");
+
+        // TODO: use user input
+        User currentUser = UserDataSource.getCurrentUser();
+        String username = (currentUser != null) ? currentUser.getFirstName() : "wtf";
+        String userID = (currentUser != null) ? currentUser.getId() : "wtf";
+
+//        byte[] imgData = "Temp String".getBytes();
+//        ParseFile imgFile = new ParseFile("shirtImage.png", imgData);
+//        newShirt.put("image", imgFile);
+        
+        newShirt.put("user", username);
+        newShirt.put("userID", userID);
+        newShirt.put("tag", "Microsoft");
+        newShirt.put("description", "my awesome shirt");
+        newShirt.put("size", "XL");
+        newShirt.saveInBackground();
     }
 
 
