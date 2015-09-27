@@ -1,7 +1,6 @@
 package me.kellymckinnon.shirtswap;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,13 +13,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder>{
+public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHolder> {
 
     List<Match> matches;
     Context context;
     View.OnClickListener listener;
 
-    MatchAdapter(List<Match> matches, Context context, View.OnClickListener listener){
+    MatchAdapter(List<Match> matches, Context context, View.OnClickListener listener) {
         this.matches = matches;
         this.context = context;
         this.listener = listener;
@@ -55,10 +54,10 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
 
         MatchViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            personName = (TextView)itemView.findViewById(R.id.person_name);
-            theirShirtPhoto = (ImageView)itemView.findViewById(R.id.their_shirt);
-            yourShirtPhoto = (ImageView)itemView.findViewById(R.id.your_shirt);
+            cv = (CardView) itemView.findViewById(R.id.cv);
+            personName = (TextView) itemView.findViewById(R.id.person_name);
+            theirShirtPhoto = (ImageView) itemView.findViewById(R.id.their_shirt);
+            yourShirtPhoto = (ImageView) itemView.findViewById(R.id.your_shirt);
         }
     }
 

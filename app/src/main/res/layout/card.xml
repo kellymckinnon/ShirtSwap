@@ -1,54 +1,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/layout_card"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:background="@color/primary_dark"
-android:orientation="vertical"
-android:padding="20dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary_dark"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-<ImageView
-    android:id="@+id/card_image"
-    android:layout_width="200dp"
-    android:layout_height="match_parent"
-    android:scaleType="fitCenter"
-    android:layout_centerHorizontal="true"
-    android:layout_gravity="center"
-    android:src="@android:drawable/ic_menu_camera" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textSize="16sp"
-        tools:text="TestCompany"
-        android:textStyle="bold"
+    <ImageView
+        android:id="@+id/card_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/primary_text"
-        android:id="@+id/tags"
-        android:layout_below="@+id/card_image" />
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:src="@android:drawable/ic_menu_camera" />
 
     <TextView
+        android:id="@+id/tags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        tools:text="Test shirt."
+        android:layout_below="@+id/card_image"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp"
+        android:textColor="@color/primary_text"
         android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="TestCompany" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tags"
         android:layout_centerInParent="true"
         android:textColor="@color/secondary_text_default_material_dark"
-        android:id="@+id/description"
-        android:layout_below="@+id/tags" />
+        android:textSize="16sp"
+        tools:text="Test shirt." />
 
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    tools:text="MEDIUM"
-    android:textSize="16sp"
-    android:textColor="@android:color/white"
-    android:id="@+id/size"
-    android:layout_centerInParent="true"
-    android:layout_below="@id/description" />
+    <TextView
+        android:id="@+id/size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/description"
+        android:layout_centerInParent="true"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        tools:text="MEDIUM" />
 
 
 </RelativeLayout>

@@ -47,9 +47,8 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
     Spinner shirtSize;
     ImageView image;
     Button uploadButton;
-    private byte[] imageBytes;
-
     Fragment parentFragment;
+    private byte[] imageBytes;
 
     @Override
     // ANDROID GODS I AM SORRY FOR MY SINS #SupportLibraryBugsAreFun
@@ -92,7 +91,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
     }
 
     private void selectImage(View v) {
-        final CharSequence[] items = { "Take Photo", "Choose from Library", "Cancel" };
+        final CharSequence[] items = {"Take Photo", "Choose from Library", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Add Photo");
         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -194,7 +193,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
     }
 
     private Bitmap getPath(Uri uri) {
-        String[] projection = { MediaStore.Images.Media.DATA };
+        String[] projection = {MediaStore.Images.Media.DATA};
         Cursor cursor = getActivity().managedQuery(uri, projection, null, null, null);
         int column_index = cursor
                 .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);

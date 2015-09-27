@@ -1,22 +1,21 @@
 package me.kellymckinnon.shirtswap;
 
 import android.net.Uri;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.util.Log;
 
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
-
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseException;
-import com.parse.GetCallback;
-import com.parse.FindCallback;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
@@ -66,9 +65,9 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
             public void onRightCardExit(Object o) {
                 flingContainer.requestLayout();
 //                ActionDataSource.saveUserSkipped(user.getId());
-                if(o instanceof Shirt) {
+                if (o instanceof Shirt) {
                     final User currentUser = UserDataSource.getCurrentUser();
-                    final Shirt likedShirt = (Shirt)o;
+                    final Shirt likedShirt = (Shirt) o;
                     currentUser.addLikedShirt(likedShirt.id);
 
                     // check for match
@@ -76,9 +75,9 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
                     List<String> otherUserLikedShirts = likedShirt.user.getLikedShirts();
                     List<String> myShirts = currentUser.getShirts();
 
-                    for(String shirtID : myShirts) {
+                    for (String shirtID : myShirts) {
                         final String shirtIDCopy = shirtID;
-                        if(otherUserLikedShirts.contains(shirtID)) {
+                        if (otherUserLikedShirts.contains(shirtID)) {
                             // there's a match bitches!!!
                             // get Shirt URL from parse
                             ParseQuery<ParseObject> query = ParseQuery.getQuery("Shirt");
@@ -120,7 +119,7 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
                         }
                     }
                 } else {
-                  // Something went wrong...
+                    // Something went wrong...
                 }
 
             }
@@ -190,7 +189,7 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
                     mCardAdapter.notifyDataSetChanged();
                     UserDataSource.setCurrentUserShirts(currentUserShirts);
                 } else {
-                    Log.e("LOL","done fucked up");
+                    Log.e("LOL", "done fucked up");
                 }
             }
         });

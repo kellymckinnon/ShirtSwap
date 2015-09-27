@@ -1,10 +1,7 @@
 package me.kellymckinnon.shirtswap;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +13,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +45,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         mListView.setAdapter(mAdapter);
 
         setTitle(mRecipient.getFirstName());
-        if(getSupportActionBar() != null) {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -86,7 +82,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        } else if(id == android.R.id.home) {
+        } else if (id == android.R.id.home) {
             finish();
             return true;
         }
@@ -130,7 +126,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) nameView.getLayoutParams();
 
-            if(message.getSender().equals(UserDataSource.getCurrentUser().getId())) {
+            if (message.getSender().equals(UserDataSource.getCurrentUser().getId())) {
                 nameView.setBackground(getResources().getDrawable(R.drawable.bubble_right_blue));
                 layoutParams.gravity = Gravity.END;
             } else {

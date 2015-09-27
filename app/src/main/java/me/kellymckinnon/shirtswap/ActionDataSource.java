@@ -34,7 +34,7 @@ public class ActionDataSource {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 ParseObject action = null;
-                if(e == null && list.size() > 0) {
+                if (e == null && list.size() > 0) {
                     // we have a match and want to match users together
                     ParseObject otherAction = list.get(0);
                     otherAction.put(COLUMN_TYPE, TYPE_MATCHED);
@@ -72,13 +72,13 @@ public class ActionDataSource {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if(e == null) {
+                if (e == null) {
                     List<String> ids = new ArrayList<String>();
-                    for(ParseObject object : list) {
+                    for (ParseObject object : list) {
                         ids.add(object.getString(COLUMN_TO_USER));
                     }
 
-                    if(callbacks != null) {
+                    if (callbacks != null) {
                         callbacks.onFetchedMatches(ids);
                     }
                 }

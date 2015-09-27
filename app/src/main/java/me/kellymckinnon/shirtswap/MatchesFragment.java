@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +22,10 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
     private List<Match> mMatches;
     private RecyclerView rv;
 
+    public MatchesFragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onClick(View v) {
         int itemPosition = rv.getChildPosition(v);
@@ -32,10 +34,6 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
         Intent intent = new Intent(getActivity(), ChatActivity.class);
         intent.putExtra(ChatActivity.USER_EXTRA, user);
         startActivity(intent);
-    }
-
-    public MatchesFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -63,7 +61,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
     @Override
     public void onFetchedMatches(List<String> matchIds) {
-        matchIds.add("dAPWnehkUo");
+        matchIds.add("p0qSFSKRvF");
         matchIds.add("nRKiKv462m");
         matchIds.add("p0qSFSKRvF");
         UserDataSource.getUsersIn(matchIds, this);
@@ -72,19 +70,12 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
     @Override
     public void onUsersFetched(List<User> users) {
         mMatches.clear();
-        for (User user : users) {
-            Match match = new Match("id1", "http://dummyimage.com/600x400/000/fff", "id2", "http://dummyimage.com/600x400/123/fff", user); // TODO USE IMAGES
-            mMatches.add(match);
-        }
+
+        Match match = new Match("id1", "http://3.bp.blogspot.com/-zfZdPShvmg8/UzmBivGcysI/AAAAAAAAJhM/lcjSD0fmMG0/s1600/WP_001911.jpg", "id2", "http://i.ebayimg.com/00/s/NzAwWDcwMA==/z/P6sAAOSwHnFVuBKS/$_35.JPG", users.get(0)); // TODO USE IMAGES
+        Match match1 = new Match("id3", "http://files.parsetfss.com/de628155-4892-411c-957c-022880994bef/tfss-43c5f9a6-7a9b-4a98-b8f2-baf0fcccb92e-shirtImage.jpeg", "id4", "http://files.parsetfss.com/de628155-4892-411c-957c-022880994bef/tfss-a56beb00-1098-4672-88f3-32a187e7dfed-shirtImage.jpeg", users.get(1)); // TODO USE IMAGES
+        mMatches.add(match);
+        mMatches.add(match1);
 
         mAdapter.notifyDataSetChanged();
     }
-//
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        User user = mMatches.get(position).otherUser;
-//        Intent intent = new Intent(getActivity(), ChatActivity.class);
-//        intent.putExtra(ChatActivity.USER_EXTRA, user);
-//        startActivity(intent);
-//    }
 }

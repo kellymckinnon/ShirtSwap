@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer"
-    android:layout_width="240dp"
+    android:layout_width="300dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:orientation="vertical"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,61 +14,70 @@
 
         <ImageView
             android:id="@+id/user_photo"
-            android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/user_name"
-            android:layout_alignBottom="@id/user_photo"
-            android:textColor="@android:color/white"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/user_photo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_height="wrap_content">
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:text="Size: "
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+            android:textSize="14sp" />
 
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="14sp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <RadioButton android:id="@+id/size_small"
+            android:orientation="horizontal"
+            android:textSize="14sp">
+
+            <RadioButton
+                android:id="@+id/size_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="S"
-                android:onClick="onSizePreferenceClicked"/>
-            <RadioButton android:id="@+id/size_medium"
+                android:onClick="onSizePreferenceClicked"
+                android:text="S" />
+
+            <RadioButton
+                android:id="@+id/size_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="M"
-                android:onClick="onSizePreferenceClicked"/>
-            <RadioButton android:id="@+id/size_large"
+                android:onClick="onSizePreferenceClicked"
+                android:text="M" />
+
+            <RadioButton
+                android:id="@+id/size_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="L"
-                android:onClick="onSizePreferenceClicked"/>
-            <RadioButton android:id="@+id/size_xl"
+                android:onClick="onSizePreferenceClicked"
+                android:text="L" />
+
+            <RadioButton
+                android:id="@+id/size_xl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="XL"
-                android:onClick="onSizePreferenceClicked"/>
+                android:onClick="onSizePreferenceClicked"
+                android:text="XL" />
         </RadioGroup>
 
     </LinearLayout>
@@ -76,44 +85,44 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@drawable/bottom_border"/>
+        android:background="@drawable/bottom_border" />
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:text="Maximum Distance: "
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:gravity="center_vertical" />
+        android:textSize="14sp" />
 
     <com.gc.materialdesign.views.Slider
         android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
         android:background="@color/primary_dark"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         materialdesign:max="50"
         materialdesign:min="0"
-        materialdesign:showNumberIndicator="true"/>
+        materialdesign:showNumberIndicator="true" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@drawable/bottom_border"/>
+        android:background="@drawable/bottom_border" />
 
     <Button xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/icons"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:text="Logout"
-        android:textSize="14sp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:background="@color/icons"
-        android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall" />
+        android:textSize="14sp" />
 
 </LinearLayout>

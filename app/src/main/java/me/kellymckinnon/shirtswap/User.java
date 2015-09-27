@@ -52,13 +52,15 @@ public class User implements Serializable {
         mFacebookId = facebookId;
     }
 
-    public List<String> getShirts() { return mShirts; }
+    public List<String> getShirts() {
+        return mShirts;
+    }
 
     public void setShirts(List<Object> shirtsList) {
-        if(shirtsList != null)
-            for(Object shirt:shirtsList)
-                if(shirt instanceof String)
-                    mShirts.add((String)shirt);
+        if (shirtsList != null)
+            for (Object shirt : shirtsList)
+                if (shirt instanceof String)
+                    mShirts.add((String) shirt);
     }
 
     public void addShirt(String shirtID) {
@@ -73,10 +75,10 @@ public class User implements Serializable {
     }
 
     public void setLikedShirts(List<Object> likedShirtsList) {
-        if(likedShirtsList != null)
-            for(Object shirt:likedShirtsList)
-                if(shirt instanceof String)
-                    mLikedShirts.add((String)shirt);
+        if (likedShirtsList != null)
+            for (Object shirt : likedShirtsList)
+                if (shirt instanceof String)
+                    mLikedShirts.add((String) shirt);
     }
 
     public void addLikedShirt(String likedShirtID) {
@@ -91,10 +93,10 @@ public class User implements Serializable {
     }
 
     public void setMatches(List<Object> matchesList) {
-        if(matchesList != null)
-            for(Object match:matchesList)
-                if(match instanceof String)
-                    mMatches.add((String)match);
+        if (matchesList != null)
+            for (Object match : matchesList)
+                if (match instanceof String)
+                    mMatches.add((String) match);
     }
 
     public void addMatch(String matchID) {

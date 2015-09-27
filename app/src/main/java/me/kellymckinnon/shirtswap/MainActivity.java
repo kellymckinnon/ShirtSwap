@@ -1,7 +1,6 @@
 package me.kellymckinnon.shirtswap;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,20 +10,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.appevents.AppEventsLogger;
-import me.kellymckinnon.shirtswap.ChoosingFragment;
-import me.kellymckinnon.shirtswap.MatchesFragment;
-import me.kellymckinnon.shirtswap.SignInActivity;
-import me.kellymckinnon.shirtswap.UserDataSource;
 import com.squareup.picasso.Picasso;
-
-import me.kellymckinnon.shirtswap.R;
 
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
@@ -86,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        if(UserDataSource.getCurrentUser() == null) {
+        if (UserDataSource.getCurrentUser() == null) {
             Intent i = new Intent(this, SignInActivity.class);
             startActivityForResult(i, SIGN_IN_REQUEST);
 
@@ -105,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SIGN_IN_REQUEST && resultCode == RESULT_OK) {
+        if (requestCode == SIGN_IN_REQUEST && resultCode == RESULT_OK) {
             updateDrawer();
             mAdapter.notifyDataSetChanged();
         }
@@ -161,10 +152,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     /**
      * Makes the selected tab heading white and the others gray.
+     *
      * @param v view to change
      */
     private void toggleColor(ImageView v) {
-        if(v.isSelected()) {
+        if (v.isSelected()) {
             v.setColorFilter(null);
         } else {
             v.setColorFilter(getResources().getColor(R.color.secondary_text));
@@ -174,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onSizePreferenceClicked(View view) {
         // TODO: SAVE SIZE PREFERENCE TO PARSE
 
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.size_small:
                 // Set small size
                 break;
@@ -198,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         @Override
         public Fragment getItem(int position) {
-            switch(position) {
+            switch (position) {
                 case 0:
                     return new ChoosingFragment();
                 case 1:

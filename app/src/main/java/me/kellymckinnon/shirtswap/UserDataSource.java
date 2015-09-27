@@ -11,9 +11,6 @@ import java.util.List;
 
 public class UserDataSource {
 
-    private static User sCurrentUser;
-    private static ArrayList<Shirt> sCurrentUserShirts;
-
     private static final String COLUMN_FIRST_NAME = "firstName";
     private static final String COLUMN_PICTURE_URL = "pictureURL";
     private static final String COLUMN_FACEBOOK_ID = "facebookId";
@@ -21,21 +18,23 @@ public class UserDataSource {
     private static final String COLUMN_SHIRTS = "shirts";
     private static final String COLUMN_LIKED_SHIRTS = "likedShirts";
     private static final String COLUMN_MATCHES = "matches";
+    private static User sCurrentUser;
+    private static ArrayList<Shirt> sCurrentUserShirts;
 
     public static User getCurrentUser() {
-        if(sCurrentUser == null && ParseUser.getCurrentUser() != null) {
+        if (sCurrentUser == null && ParseUser.getCurrentUser() != null) {
             sCurrentUser = parseUserToUser(ParseUser.getCurrentUser());
         }
 
         return sCurrentUser;
     }
 
-    public static void setCurrentUserShirts(ArrayList<Shirt> shirts) {
-        sCurrentUserShirts = shirts;
-    }
-
     public static ArrayList<Shirt> getCurrentUserShirts() {
         return sCurrentUserShirts;
+    }
+
+    public static void setCurrentUserShirts(ArrayList<Shirt> shirts) {
+        sCurrentUserShirts = shirts;
     }
 
     public static void getUnseenUsers(final UserDataCallbacks callbacks) {
@@ -44,9 +43,9 @@ public class UserDataSource {
         seenUsersQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                if(e == null) {
+                if (e == null) {
                     List<String> ids = new ArrayList<String>();
-                    for(ParseObject parseObject : list) {
+                    for (ParseObject parseObject : list) {
                         ids.add(parseObject.getString(ActionDataSource.COLUMN_TO_USER));
                     }
                     ParseQuery<ParseUser> query = ParseUser.getQuery();
@@ -64,13 +63,13 @@ public class UserDataSource {
     }
 
     private static void formatCallback(List<ParseUser> parseUsers, ParseException e, UserDataCallbacks callbacks) {
-        if(e == null) {
+        if (e == null) {
             List<User> users = new ArrayList<>();
-            for(ParseUser parseUser : parseUsers) {
+            for (ParseUser parseUser : parseUsers) {
                 User user = parseUserToUser(parseUser);
                 users.add(user);
             }
-            if(callbacks != null) {
+            if (callbacks != null) {
                 callbacks.onUsersFetched(users);
             }
         }

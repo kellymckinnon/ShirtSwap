@@ -15,10 +15,10 @@ import java.util.HashMap;
 public class MessageDataSource {
 
     private static final Firebase sRef = new Firebase("https://glaring-torch-8277.firebaseIO.com");
-    private static SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddmmss");
     private static final String TAG = "MessageDataSource";
     private static final String COLUMN_TEXT = "text";
     private static final String COLUMN_SENDER = "sender";
+    private static SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddmmss");
 
     public static void saveMessage(Message message, String conversationId) {
 
@@ -32,7 +32,7 @@ public class MessageDataSource {
         sRef.child(conversationId).child(key).setValue(msg);
     }
 
-    public static MessagesListener addMessageListener(String convoId,  MessagesCallbacks messagesCallbacks) {
+    public static MessagesListener addMessageListener(String convoId, MessagesCallbacks messagesCallbacks) {
         MessagesListener listener = new MessagesListener(messagesCallbacks);
         sRef.child(convoId).addChildEventListener(listener);
         return listener;
@@ -40,6 +40,10 @@ public class MessageDataSource {
 
     public static void stop(MessagesListener listener) {
         sRef.removeEventListener(listener);
+    }
+
+    public interface MessagesCallbacks {
+        void onMessageAdded(Message message);
     }
 
     public static class MessagesListener implements ChildEventListener {
@@ -63,7 +67,7 @@ public class MessageDataSource {
                 e.printStackTrace();
             }
 
-            if(messagesCallbacks != null) {
+            if (messagesCallbacks != null) {
                 messagesCallbacks.onMessageAdded(message);
             }
         }
@@ -87,9 +91,5 @@ public class MessageDataSource {
         public void onCancelled(FirebaseError firebaseError) {
 
         }
-    }
-
-    public interface MessagesCallbacks {
-        void onMessageAdded(Message message);
     }
 }
