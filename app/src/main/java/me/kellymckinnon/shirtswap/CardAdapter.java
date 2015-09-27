@@ -13,9 +13,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by kelly on 1/19/15.
- */
 public class CardAdapter extends BaseAdapter {
 
     private List<Shirt> cardList = new ArrayList<Shirt>();

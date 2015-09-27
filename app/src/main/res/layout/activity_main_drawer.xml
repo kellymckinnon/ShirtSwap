@@ -5,15 +5,34 @@
     android:layout_width="240dp"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
     android:orientation="vertical"
     android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/user_photo"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_alignBottom="@id/user_photo"
+            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:background="@drawable/bottom_border"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:layout_height="wrap_content">
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
@@ -54,9 +73,16 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/bottom_border"/>
+
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:textSize="14sp"
         android:text="Maximum Distance: "
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
@@ -66,25 +92,28 @@
         android:id="@+id/slider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:background="@color/primary_gray"
         materialdesign:max="50"
         materialdesign:min="0"
         materialdesign:showNumberIndicator="true"/>
 
     <ImageView
-        android:id="@+id/border"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@drawable/bottom_border"/>
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <Button xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="Logout"
         android:textSize="14sp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:background="@android:color/white"
         android:gravity="center_vertical"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"
-        android:background="@drawable/bottom_border"/>
+        android:minHeight="?android:attr/listPreferredItemHeightSmall" />
 
 </LinearLayout>

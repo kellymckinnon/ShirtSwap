@@ -89,15 +89,17 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         if(UserDataSource.getCurrentUser() == null) {
             Intent i = new Intent(this, SignInActivity.class);
             startActivityForResult(i, SIGN_IN_REQUEST);
-            return;
-        }
 
-        updateDrawer();
+        } else {
+            updateDrawer();
+        }
     }
 
     private void updateDrawer() {
-//        TextView userName = (TextView) findViewById(R.id.user_name);
-//        userName.setText(UserDataSource.getCurrentUser().getFirstName());
+        ImageView userPhoto = (ImageView) findViewById(R.id.user_photo);
+        Picasso.with(this).load(UserDataSource.getCurrentUser().getLargePictureURL()).into(userPhoto);
+        TextView userName = (TextView) findViewById(R.id.user_name);
+        userName.setText(UserDataSource.getCurrentUser().getFirstName());
     }
 
     @Override

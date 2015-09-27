@@ -11,9 +11,6 @@ import com.parse.ParseUser;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Fisher on 8/5/15.
- */
 public class ActionDataSource {
 
     public static final String TABLE_NAME = "Action";

@@ -6,9 +6,6 @@ import com.firebase.client.Firebase;
 import com.parse.Parse;
 import com.parse.ParseFacebookUtils;
 
-/**
- * Created by Fisher on 7/21/15.
- */
 public class ShirtSwapApplication extends Application {
 
     @Override

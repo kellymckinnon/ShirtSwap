@@ -2,9 +2,6 @@ package me.kellymckinnon.shirtswap;
 
 import java.util.Date;
 
-/**
- * Created by Fisher on 8/9/15.
- */
 public class Message {
     private String mText;
     private String mSender;

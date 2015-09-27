@@ -129,10 +129,10 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) nameView.getLayoutParams();
 
             if(message.getSender().equals(UserDataSource.getCurrentUser().getId())) {
-                nameView.setBackground(getDrawable(R.drawable.bubble_right_green));
+                nameView.setBackground(getResources().getDrawable(R.drawable.bubble_right_green));
                 layoutParams.gravity = Gravity.END;
             } else {
-                nameView.setBackground(getDrawable(R.drawable.bubble_left_gray));
+                nameView.setBackground(getResources().getDrawable(R.drawable.bubble_left_gray));
                 layoutParams.gravity = Gravity.LEFT;
             }
             nameView.setLayoutParams(layoutParams);

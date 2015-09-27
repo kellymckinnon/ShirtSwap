@@ -12,12 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-/**
- * Created by Fisher on 8/10/15.
- */
 public class MessageDataSource {
 
-    private static final Firebase sRef = new Firebase("glaring-torch-8277.firebaseIO.com");
+    private static final Firebase sRef = new Firebase("https://glaring-torch-8277.firebaseIO.com");
     private static SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddmmss");
     private static final String TAG = "MessageDataSource";
     private static final String COLUMN_TEXT = "text";
