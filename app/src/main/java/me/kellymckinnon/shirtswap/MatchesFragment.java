@@ -47,11 +47,11 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
     @Override
     public void onFetchedMatches(List<String> matchIds) {
-        me.kellymckinnon.shirtswap.UserDataSource.getUsersIn(matchIds, this);
+        UserDataSource.getUsersIn(matchIds, this);
     }
 
     @Override
-    public void onUsersFetched(List<me.kellymckinnon.shirtswap.User> users) {
+    public void onUsersFetched(List<User> users) {
         mUsers.clear();
         mUsers.addAll(users);
         mAdapter.notifyDataSetChanged();
@@ -59,7 +59,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        me.kellymckinnon.shirtswap.User user = mUsers.get(position);
+        User user = mUsers.get(position);
         Intent intent = new Intent(getActivity(), ChatActivity.class);
         intent.putExtra(ChatActivity.USER_EXTRA, user);
         startActivity(intent);
@@ -67,7 +67,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
     public class MatchesAdapter extends ArrayAdapter<me.kellymckinnon.shirtswap.User> {
 
-        MatchesAdapter(List<me.kellymckinnon.shirtswap.User> users) {
+        MatchesAdapter(List<User> users) {
             super(MatchesFragment.this.getActivity(), android.R.layout.simple_list_item_1, users);
         }
 

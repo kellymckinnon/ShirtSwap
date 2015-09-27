@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private ImageView mMatchesIcon;
     private ViewPager mViewPager;
     private PagerAdapter mAdapter;
+    private ImageView mSellingIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +61,18 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 mViewPager.setCurrentItem(1);
             }
         });
+        mSellingIcon = (ImageView) findViewById(R.id.sell_icon);
+        mSellingIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mViewPager.setCurrentItem(2);
+            }
+        });
+
         mChoosingIcon.setSelected(true);
         toggleColor(mChoosingIcon);
         toggleColor(mMatchesIcon);
+        toggleColor(mSellingIcon);
 
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -86,10 +96,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     private void updateDrawer() {
-        ImageView userPhoto = (ImageView) findViewById(R.id.user_photo);
-        Picasso.with(this).load(UserDataSource.getCurrentUser().getLargePictureURL()).into(userPhoto);
-        TextView userName = (TextView) findViewById(R.id.user_name);
-        userName.setText(UserDataSource.getCurrentUser().getFirstName());
+//        TextView userName = (TextView) findViewById(R.id.user_name);
+//        userName.setText(UserDataSource.getCurrentUser().getFirstName());
     }
 
     @Override
@@ -153,13 +161,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     return new ChoosingFragment();
                 case 1:
                     return new MatchesFragment();
+                case 2:
+                    return new SellingFragment();
             }
             return null;
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 3;
         }
     }
 }

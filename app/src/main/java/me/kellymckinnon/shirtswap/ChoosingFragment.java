@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment that shows the main view with the swipeable cards.
  */
 public class ChoosingFragment extends Fragment implements UserDataSource.UserDataCallbacks {
 
