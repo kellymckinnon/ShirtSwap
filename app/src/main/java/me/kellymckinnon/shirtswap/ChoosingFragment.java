@@ -104,9 +104,12 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
 
     @Override
     public void onUsersFetched(List<User> users) {
-        final List<Shirt> shirts = new ArrayList<>();
+        final List<Shirt> otherUsersShirts = new ArrayList<>();
 
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Shirt");
+        final ArrayList<Shirt> currentUserShirts = new ArrayList<>();
+        final User currentUser = UserDataSource.getCurrentUser();
+
+        ParseQuery<ParseObject> query = new ParseQuery<>("Shirt");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> markers, ParseException e) {
                 if (e == null) {
@@ -124,10 +127,15 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
                         shirt.tag = po.getString("tag");
                         shirt.url = Uri.parse(postImage.getUrl());
 
-                        shirts.add(shirt);
+                        if (shirt.user.getId().equals(currentUser.getId())) {
+                            currentUserShirts.add(shirt);
+                        } else {
+                            otherUsersShirts.add(shirt);
+                        }
                     }
-                    mCardAdapter.addCards(shirts);
+                    mCardAdapter.addCards(otherUsersShirts);
                     mCardAdapter.notifyDataSetChanged();
+                    UserDataSource.setCurrentUserShirts(currentUserShirts);
                 } else {
                     Log.e("LOL","done fucked up");
                 }

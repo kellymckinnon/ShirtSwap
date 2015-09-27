@@ -19,6 +19,9 @@ import java.util.ArrayList;
  */
 public class SellingFragment extends Fragment {
 
+    ListingGridAdapter mAdapter;
+    GridView gridview;
+
     public SellingFragment() {
         // Required empty public constructor
     }
@@ -28,16 +31,16 @@ public class SellingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_selling, container, false);
 
-        User user = UserDataSource.getCurrentUser();
-//        ArrayList<Shirt> shirts = user.getShirts();
+        ArrayList<Shirt> shirts = UserDataSource.getCurrentUserShirts();
 
-        GridView gridview = (GridView) v.findViewById(R.id.gridview);
-//        gridview.setAdapter(new Image(this));
+        gridview = (GridView) v.findViewById(R.id.gridview);
+        mAdapter = new ListingGridAdapter(getActivity(), shirts);
+        gridview.setAdapter(mAdapter);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(getActivity(),"hello world", Toast.LENGTH_SHORT);
+                // TODO open image full screen
             }
         });
 
@@ -62,5 +65,10 @@ public class SellingFragment extends Fragment {
         if (fragment != null) {
             fragment.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    public void notifyDataChanged() {
+        mAdapter = new ListingGridAdapter(getActivity(), UserDataSource.getCurrentUserShirts());
+        gridview.setAdapter(mAdapter);
     }
 }

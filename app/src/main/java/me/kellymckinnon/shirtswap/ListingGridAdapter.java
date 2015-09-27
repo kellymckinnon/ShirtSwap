@@ -4,24 +4,28 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
-import me.kellymckinnon.shirtswap.R;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+
 
 public class ListingGridAdapter extends BaseAdapter {
     private Context mContext;
+    private ArrayList<Shirt> mShirts;
 
-    public ListingGridAdapter(Context c) {
+    public ListingGridAdapter(Context c, ArrayList<Shirt> shirts) {
         mContext = c;
+        mShirts = shirts;
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return mShirts.size();
     }
 
     public Object getItem(int position) {
-        return null;
+        return mShirts.get(position);
     }
 
     public long getItemId(int position) {
@@ -34,18 +38,12 @@ public class ListingGridAdapter extends BaseAdapter {
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
+        Picasso.with(mContext).load(mShirts.get(position).url).into(imageView);
         return imageView;
     }
 
-    // references to our images
-    private Integer[] mThumbIds = {
-    };
 }

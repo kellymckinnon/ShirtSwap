@@ -12,6 +12,7 @@ import java.util.List;
 public class UserDataSource {
 
     private static User sCurrentUser;
+    private static ArrayList<Shirt> sCurrentUserShirts;
 
     private static final String COLUMN_FIRST_NAME = "firstName";
     private static final String COLUMN_PICTURE_URL = "pictureURL";
@@ -27,6 +28,14 @@ public class UserDataSource {
         }
 
         return sCurrentUser;
+    }
+
+    public static void setCurrentUserShirts(ArrayList<Shirt> shirts) {
+        sCurrentUserShirts = shirts;
+    }
+
+    public static ArrayList<Shirt> getCurrentUserShirts() {
+        return sCurrentUserShirts;
     }
 
     public static void getUnseenUsers(final UserDataCallbacks callbacks) {

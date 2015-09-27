@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by kelly on 9/27/15.
@@ -65,7 +66,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
         shirtSize = (Spinner) v.findViewById(R.id.shirt_size);
-        String[] sizes = new String[]{"S", "M", "L", "XL"};
+        String[] sizes = new String[]{"SMALL", "MEDIUM", "LARGE", "EXTRA LARGE"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sizes);
         shirtSize.setAdapter(adapter);
 
@@ -126,21 +127,31 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
         final ParseObject newShirt = new ParseObject("Shirt");
 
         User currentUser = UserDataSource.getCurrentUser();
-        final String username = (currentUser != null) ? currentUser.getFirstName() : "wtf";
-        final String userID = (currentUser != null) ? currentUser.getId() : "wtf";
+        final String username = (currentUser != null) ? currentUser.getFirstName() : "Jane";
+        final String userID = (currentUser != null) ? currentUser.getId() : "Doe";
 
         final ParseFile imgFile = new ParseFile("shirtImage.jpeg", imageBytes);
         imgFile.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
                 newShirt.put("image", imgFile);
-
                 newShirt.put("user", username);
                 newShirt.put("userID", userID);
                 newShirt.put("tag", shirtTag.getText().toString());
                 newShirt.put("description", shirtDesc.getText().toString());
                 newShirt.put("size", shirtSize.getSelectedItem().toString());
                 newShirt.saveInBackground();
+
+                ArrayList<Shirt> oldShirts = UserDataSource.getCurrentUserShirts();
+                Shirt shirt = new Shirt();
+                shirt.description = shirtDesc.getText().toString();
+                shirt.size = shirtSize.getSelectedItem().toString();
+                shirt.url = new Uri.Builder().path(imgFile.getUrl()).build();
+
+                oldShirts.add(shirt);
+                UserDataSource.setCurrentUserShirts(oldShirts);
+                ((SellingFragment) parentFragment).notifyDataChanged();
+
                 dismiss();
             }
         });
