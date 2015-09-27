@@ -1,40 +1,89 @@
 package me.kellymckinnon.shirtswap;
 
+import com.squareup.picasso.Picasso;
+
 import android.content.Context;
-import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
+import java.util.ArrayList;
 import java.util.List;
 
-import me.kellymckinnon.shirtswap.R;
-
 /**
- * Created by Fisher on 8/3/15.
+ * Created by kelly on 1/19/15.
  */
-public class CardAdapter extends ArrayAdapter<me.kellymckinnon.shirtswap.User> {
+public class CardAdapter extends BaseAdapter {
 
-    CardAdapter(Context context, List<me.kellymckinnon.shirtswap.User> users) {
-        super(context, R.layout.card, R.id.name, users);
+    private List<Shirt> cardList = new ArrayList<Shirt>();
+    private Context context;
+
+    public CardAdapter(Context context, List<Shirt> list) {
+        addCards(list);
+        this.context = context;
     }
 
     @Override
-    public CardView getView(int position, View convertView, ViewGroup parent) {
-        CardView cardView = (CardView) super.getView(position, convertView, parent);
+    public int getCount() {
+        return cardList.size();
+    }
 
-        me.kellymckinnon.shirtswap.User user = getItem(position);
+    @Override
+    public Object getItem(int position) {
+        return cardList.get(position);
+    }
 
-        TextView userNameView = (TextView) cardView.findViewById(R.id.name);
-        userNameView.setText(user.getFirstName());
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-        ImageView v = (ImageView) cardView.findViewById(R.id.user_photo);
-        Picasso.with(getContext()).load(user.getLargePictureURL()).into(v);
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
 
-        return cardView;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.card, parent, false);
+            holder = new ViewHolder();
+            holder.image = (ImageView) convertView.findViewById(R.id.card_image);
+            holder.username = (TextView) convertView.findViewById(R.id.username);
+            holder.description = (TextView) convertView.findViewById(R.id.description);
+            holder.tags = (TextView) convertView.findViewById(R.id.tags);
+            holder.size = (TextView) convertView.findViewById(R.id.size);
+
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        Shirt model = cardList.get(position);
+        holder.username.setText(model.user.getFirstName());
+        holder.description.setText(model.description);
+        holder.tags.setText(model.tags[0]);
+        holder.size.setText(model.size.toString());
+
+        Picasso.with(context).load(model.user.getLargePictureURL()).into(holder.image);
+
+        return convertView;
+    }
+
+    public void removeFrontItem() {
+        cardList.remove(0);
+    }
+
+    public void addCards(List<Shirt> list) {
+        cardList.addAll(list);
+    }
+
+    private class ViewHolder {
+        public ImageView image;
+        public TextView username;
+        public TextView description;
+        public TextView tags;
+        public TextView size;
     }
 }
+
