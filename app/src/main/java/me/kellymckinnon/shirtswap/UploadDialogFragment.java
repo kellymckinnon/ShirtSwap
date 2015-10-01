@@ -17,12 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-import com.gc.materialdesign.views.ButtonRectangle;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -30,7 +28,6 @@ import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,7 +44,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
     EditText shirtTag;
     Spinner shirtSize;
     ImageView image;
-    ButtonRectangle uploadButton;
+    com.rey.material.widget.Button uploadButton;
     Fragment parentFragment;
     private byte[] imageBytes;
 
@@ -80,7 +77,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
             }
         });
 
-        uploadButton = (ButtonRectangle) v.findViewById(R.id.upload);
+        uploadButton = (com.rey.material.widget.Button) v.findViewById(R.id.upload);
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,7 +161,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
             if (requestCode == REQUEST_CAMERA) {
                 Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+                thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
                 imageBytes = bytes.toByteArray();
                 File destination = new File(Environment.getExternalStorageDirectory(),
                         System.currentTimeMillis() + ".jpg");
@@ -174,8 +171,6 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
                     fo = new FileOutputStream(destination);
                     fo.write(bytes.toByteArray());
                     fo.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -202,9 +197,7 @@ public class UploadDialogFragment extends android.support.v4.app.DialogFragment 
         String filePath = cursor.getString(column_index);
         cursor.close();
         // Convert file path into bitmap image using below line.
-        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-
-        return bitmap;
+        return BitmapFactory.decodeFile(filePath);
     }
 
 }

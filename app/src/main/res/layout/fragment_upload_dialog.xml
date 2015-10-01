@@ -10,6 +10,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
+        android:contentDescription="@string/content_description_upload_image"
         android:padding="30dp"
         android:scaleType="centerCrop"
         android:src="@android:drawable/ic_menu_camera" />
@@ -23,31 +24,43 @@
         android:gravity="center_horizontal"
         android:spinnerMode="dropdown" />
 
-    <EditText
-        android:id="@+id/shirt_tag"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:hint="Company or other tag" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/shirt_description"
+        <EditText
+            android:id="@+id/shirt_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_horizontal"
+            android:hint="@string/tag_hint" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_horizontal"
-        android:hint="Description of your shirt (optional)"
-        android:maxLines="2" />
+        android:layout_height="wrap_content">
 
-    <com.gc.materialdesign.views.ButtonRectangle
+        <EditText
+            android:id="@+id/shirt_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_horizontal"
+            android:hint="@string/desc_hint"
+            android:maxLines="2" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <com.rey.material.widget.Button
         android:id="@+id/upload"
-        android:padding="5dp"
+        style="@style/Material.Drawable.Ripple.Touch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="@color/primary_dark"
-        android:text="UPLOAD" />
+        android:padding="5dp"
+        android:text="@string/upload" />
 </LinearLayout>

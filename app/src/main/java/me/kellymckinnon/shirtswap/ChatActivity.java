@@ -1,14 +1,13 @@
 package me.kellymckinnon.shirtswap;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -24,8 +23,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     private ArrayList<Message> mMessages;
     private MessagesAdapter mAdapter;
-    private me.kellymckinnon.shirtswap.User mRecipient;
-    private ListView mListView;
     private Date mLastMessageDate = new Date();
     private String mConvoId;
     private me.kellymckinnon.shirtswap.MessageDataSource.MessagesListener mListener;
@@ -35,9 +32,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        mRecipient = (me.kellymckinnon.shirtswap.User) getIntent().getSerializableExtra(USER_EXTRA);
+        User mRecipient = (User) getIntent().getSerializableExtra(USER_EXTRA);
 
-        mListView = (ListView) findViewById(R.id.messages_list);
+        ListView mListView = (ListView) findViewById(R.id.messages_list);
 
         mMessages = new ArrayList<>();
         mAdapter = new MessagesAdapter(mMessages);
@@ -49,7 +46,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        Button sendButton = (Button) findViewById(R.id.send_message);
+        FloatingActionButton sendButton = (FloatingActionButton) findViewById(R.id.send_message);
         sendButton.setOnClickListener(this);
 
         String[] ids = {mRecipient.getId(), me.kellymckinnon.shirtswap.UserDataSource.getCurrentUser().getId()};
@@ -57,13 +54,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         mConvoId = ids[0] + ids[1];
 
         mListener = me.kellymckinnon.shirtswap.MessageDataSource.addMessageListener(mConvoId, this);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_chat, menu);
-        return true;
     }
 
     @Override
@@ -80,9 +70,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == android.R.id.home) {
+        if (id == android.R.id.home) {
             finish();
             return true;
         }
@@ -131,7 +119,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 layoutParams.gravity = Gravity.END;
             } else {
                 nameView.setBackground(getResources().getDrawable(R.drawable.bubble_left_gray));
-                layoutParams.gravity = Gravity.LEFT;
+                layoutParams.gravity = Gravity.START;
             }
             nameView.setLayoutParams(layoutParams);
 

@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class MessageDataSource {
 
@@ -18,7 +19,7 @@ public class MessageDataSource {
     private static final String TAG = "MessageDataSource";
     private static final String COLUMN_TEXT = "text";
     private static final String COLUMN_SENDER = "sender";
-    private static SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddmmss");
+    private static SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyyMMddmmss", Locale.US);
 
     public static void saveMessage(Message message, String conversationId) {
 
@@ -56,7 +57,8 @@ public class MessageDataSource {
 
         @Override
         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            HashMap<String, String> msg = (HashMap) dataSnapshot.getValue();
+            @SuppressWarnings("unchecked") HashMap<String, String> msg =
+                    (HashMap<String, String>) dataSnapshot.getValue();
             Message message = new Message();
             message.setSender(msg.get(COLUMN_SENDER));
             message.setText(msg.get(COLUMN_TEXT));

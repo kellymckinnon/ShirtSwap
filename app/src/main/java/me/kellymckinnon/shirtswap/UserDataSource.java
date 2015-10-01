@@ -38,13 +38,13 @@ public class UserDataSource {
     }
 
     public static void getUnseenUsers(final UserDataCallbacks callbacks) {
-        ParseQuery<ParseObject> seenUsersQuery = new ParseQuery<ParseObject>(ActionDataSource.TABLE_NAME);
+        ParseQuery<ParseObject> seenUsersQuery = new ParseQuery<>(ActionDataSource.TABLE_NAME);
         seenUsersQuery.whereEqualTo(ActionDataSource.COLUMN_BY_USER, ParseUser.getCurrentUser().getObjectId());
         seenUsersQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
-                    List<String> ids = new ArrayList<String>();
+                    List<String> ids = new ArrayList<>();
                     for (ParseObject parseObject : list) {
                         ids.add(parseObject.getString(ActionDataSource.COLUMN_TO_USER));
                     }

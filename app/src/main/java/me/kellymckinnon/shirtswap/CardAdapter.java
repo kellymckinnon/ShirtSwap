@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CardAdapter extends BaseAdapter {
 
-    private List<Shirt> cardList = new ArrayList<Shirt>();
+    private List<Shirt> cardList = new ArrayList<>();
     private Context context;
 
     public CardAdapter(Context context, List<Shirt> list) {
@@ -60,7 +60,7 @@ public class CardAdapter extends BaseAdapter {
         holder.tags.setText(model.tag);
         holder.size.setText(model.size);
 
-        Picasso.with(context).load(model.url).into(holder.image);
+        Picasso.with(context).load(model.url).centerCrop().fit().into(holder.image);
 
         return convertView;
     }

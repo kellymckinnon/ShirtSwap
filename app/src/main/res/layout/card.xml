@@ -1,53 +1,70 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_card"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/primary_dark"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/card_image"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cv"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:scaleType="fitCenter"
-        android:src="@android:drawable/ic_menu_camera" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tags"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/card_image"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="4dp"
-        android:textColor="@color/primary_text"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        tools:text="TestCompany" />
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/layout_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tags"
-        android:layout_centerInParent="true"
-        android:textColor="@color/secondary_text_default_material_dark"
-        android:textSize="16sp"
-        tools:text="Test shirt." />
+            <ImageView
+                android:id="@+id/card_image"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/content_description_card_image" />
 
-    <TextView
-        android:id="@+id/size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/description"
-        android:layout_centerInParent="true"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        tools:text="MEDIUM" />
+            <TextView
+                android:id="@+id/tags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card_image"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:maxLines="1"
+                android:textColor="@color/primary_text"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:text="Test Company" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tags"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:maxLines="2"
+                android:minLines="2"
+                android:textColor="@color/secondary_text"
+                android:textSize="14sp"
+                tools:text="Test shirt." />
+
+            <TextView
+                android:id="@+id/size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/description"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:textColor="@color/divider"
+                android:textSize="14sp"
+                tools:text="MEDIUM" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
 
 

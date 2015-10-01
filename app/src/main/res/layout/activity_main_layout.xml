@@ -5,32 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    tools:ignore="MergeRootFrame">
+    tools:context=".MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <ImageView
             android:id="@+id/logo_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description_logo"
             android:src="@drawable/text_logo" />
 
         <ImageView
             android:id="@+id/chat_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/content_description_chat"
             android:src="@drawable/ic_chat" />
 
         <ImageView
             android:id="@+id/sell_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_camera" />
+            android:contentDescription="@string/content_description_upload"
+            android:src="@drawable/ic_file_upload_white_48dp" />
 
     </android.support.v7.widget.Toolbar>
 

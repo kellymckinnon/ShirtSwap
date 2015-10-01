@@ -1,7 +1,6 @@
 package me.kellymckinnon.shirtswap;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +28,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     public MatchAdapter.MatchViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.match_list_item, parent, false);
         v.setOnClickListener(listener);
-        MatchViewHolder mvh = new MatchViewHolder(v);
-        return mvh;
+        return new MatchViewHolder(v);
     }
 
     @Override
@@ -47,14 +45,12 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MatchViewHol
     }
 
     public static class MatchViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
         TextView personName;
         ImageView theirShirtPhoto;
         ImageView yourShirtPhoto;
 
         MatchViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cv);
             personName = (TextView) itemView.findViewById(R.id.person_name);
             theirShirtPhoto = (ImageView) itemView.findViewById(R.id.their_shirt);
             yourShirtPhoto = (ImageView) itemView.findViewById(R.id.your_shirt);

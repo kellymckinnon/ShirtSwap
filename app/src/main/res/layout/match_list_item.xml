@@ -22,8 +22,10 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="5dp"
+                android:contentDescription="@string/content_description_matches_shirt"
                 android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_menu_camera" />
+                android:src="@android:drawable/ic_menu_camera"
+                tools:ignore="RtlHardcoded" />
 
             <ImageView
                 android:id="@+id/double_arrow"
@@ -32,7 +34,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="5dp"
                 android:layout_toRightOf="@+id/their_shirt"
-                android:src="@drawable/ic_settings_ethernet_light_blue_600_36dp" />
+                android:contentDescription="@string/content_description_double_arrow"
+                android:src="@drawable/ic_double_arrow_dashed_primary_dark"
+                tools:ignore="RtlHardcoded" />
 
             <ImageView
                 android:id="@+id/your_shirt"
@@ -40,8 +44,10 @@
                 android:layout_height="60dp"
                 android:layout_marginRight="10dp"
                 android:layout_toRightOf="@+id/double_arrow"
+                android:contentDescription="@string/content_description_your_shirt"
                 android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_menu_camera" />
+                android:src="@android:drawable/ic_menu_camera"
+                tools:ignore="RtlHardcoded" />
 
             <TextView
                 android:id="@+id/person_name"
@@ -58,7 +64,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_keyboard_arrow_right_light_blue_600_36dp" />
+                android:contentDescription="@string/content_description_right_arrow_for_chat"
+                android:src="@drawable/ic_keyboard_arrow_right_accent"
+                tools:ignore="RtlHardcoded" />
 
         </RelativeLayout>
 

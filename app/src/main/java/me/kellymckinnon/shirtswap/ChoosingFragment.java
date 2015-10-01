@@ -181,15 +181,15 @@ public class ChoosingFragment extends Fragment implements UserDataSource.UserDat
 
                         if (shirt.user.getId().equals(currentUser.getId())) {
                             currentUserShirts.add(shirt);
-                        } else {
+                        } //else { // TODO ADD THIS BACK IN -- FOR DEBUGGING ADD ALL SHIRTS TO QUEUE
                             otherUsersShirts.add(shirt);
-                        }
+                        //}
                     }
                     mCardAdapter.addCards(otherUsersShirts);
                     mCardAdapter.notifyDataSetChanged();
                     UserDataSource.setCurrentUserShirts(currentUserShirts);
                 } else {
-                    Log.e("LOL", "done fucked up");
+                    Log.e(TAG, "Error in fetching users.");
                 }
             }
         });

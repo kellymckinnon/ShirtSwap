@@ -28,7 +28,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
     @Override
     public void onClick(View v) {
-        int itemPosition = rv.getChildPosition(v);
+        int itemPosition = rv.getChildAdapterPosition(v);
         Match item = mMatches.get(itemPosition);
         User user = item.otherUser;
         Intent intent = new Intent(getActivity(), ChatActivity.class);
@@ -47,7 +47,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
         rv = (RecyclerView) v.findViewById(R.id.matches_list);
         rv.setHasFixedSize(true);
 
-        mMatches = new ArrayList<Match>();
+        mMatches = new ArrayList<>();
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(llm);
@@ -61,7 +61,7 @@ public class MatchesFragment extends Fragment implements ActionDataSource.Action
 
     @Override
     public void onFetchedMatches(List<String> matchIds) {
-        matchIds.add("p0qSFSKRvF");
+        matchIds.add("dAPWnehkUo");
         matchIds.add("nRKiKv462m");
         matchIds.add("p0qSFSKRvF");
         UserDataSource.getUsersIn(matchIds, this);

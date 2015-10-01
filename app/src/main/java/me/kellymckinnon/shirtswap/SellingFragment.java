@@ -2,15 +2,13 @@ package me.kellymckinnon.shirtswap;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
-
-import com.gc.materialdesign.views.ButtonRectangle;
 
 import java.util.ArrayList;
 
@@ -44,7 +42,7 @@ public class SellingFragment extends Fragment {
             }
         });
 
-        ButtonRectangle b = (ButtonRectangle) v.findViewById(R.id.list_button);
+        FloatingActionButton b = (FloatingActionButton) v.findViewById(R.id.list_button);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -33,7 +33,7 @@ public class ActionDataSource {
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
-                ParseObject action = null;
+                ParseObject action;
                 if (e == null && list.size() > 0) {
                     // we have a match and want to match users together
                     ParseObject otherAction = list.get(0);
@@ -65,7 +65,7 @@ public class ActionDataSource {
     }
 
     public static void getMatches(final ActionDataCallbacks callbacks) {
-        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(TABLE_NAME);
+        ParseQuery<ParseObject> query = new ParseQuery<>(TABLE_NAME);
         query.whereEqualTo(COLUMN_BY_USER, ParseUser.getCurrentUser().getObjectId());
         query.whereEqualTo(COLUMN_TYPE, TYPE_MATCHED);
         query.orderByDescending(COLUMN_UPDATED_AT);
@@ -73,7 +73,7 @@ public class ActionDataSource {
             @Override
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
-                    List<String> ids = new ArrayList<String>();
+                    List<String> ids = new ArrayList<>();
                     for (ParseObject object : list) {
                         ids.add(object.getString(COLUMN_TO_USER));
                     }

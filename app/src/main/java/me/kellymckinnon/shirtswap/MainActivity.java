@@ -1,7 +1,9 @@
 package me.kellymckinnon.shirtswap;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -10,12 +12,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.appevents.AppEventsLogger;
 import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         toggleColor(mMatchesIcon);
         toggleColor(mSellingIcon);
 
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
@@ -77,6 +83,17 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                drawerLayout.closeDrawers();
+                Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+                return true;
+            }
+        });
+
         if (UserDataSource.getCurrentUser() == null) {
             Intent i = new Intent(this, SignInActivity.class);
             startActivityForResult(i, SIGN_IN_REQUEST);
@@ -87,8 +104,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     private void updateDrawer() {
-        ImageView userPhoto = (ImageView) findViewById(R.id.user_photo);
-        Picasso.with(this).load(UserDataSource.getCurrentUser().getLargePictureURL()).into(userPhoto);
+        CircleImageView userPhoto = (CircleImageView) findViewById(R.id.user_photo);
+        Picasso.with(this)
+                .load(UserDataSource.getCurrentUser().getLargePictureURL())
+                .noFade()
+                .into(userPhoto);
         TextView userName = (TextView) findViewById(R.id.user_name);
         userName.setText(UserDataSource.getCurrentUser().getFirstName());
     }
@@ -157,28 +177,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
      */
     private void toggleColor(ImageView v) {
         if (v.isSelected()) {
-            v.setColorFilter(null);
+            v.setColorFilter(Color.WHITE);
         } else {
-            v.setColorFilter(getResources().getColor(R.color.secondary_text));
-        }
-    }
-
-    public void onSizePreferenceClicked(View view) {
-        // TODO: SAVE SIZE PREFERENCE TO PARSE
-
-        switch (view.getId()) {
-            case R.id.size_small:
-                // Set small size
-                break;
-            case R.id.size_medium:
-                // Set medium size
-                break;
-            case R.id.large:
-                // Set large size
-                break;
-            case R.id.size_xl:
-                // Set xl size
-                break;
+            v.setColorFilter(getResources().getColor(R.color.primary_dark));
         }
     }
 

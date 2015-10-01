@@ -12,9 +12,9 @@ public class User implements Serializable {
     private String mPictureURL;
     private String mId;
     private String mFacebookId;
-    private List<String> mShirts = new ArrayList<String>();
-    private List<String> mLikedShirts = new ArrayList<String>();
-    private List<String> mMatches = new ArrayList<String>();
+    private List<String> mShirts = new ArrayList<>();
+    private List<String> mLikedShirts = new ArrayList<>();
+    private List<String> mMatches = new ArrayList<>();
 
     public String getLargePictureURL() {
         return "https://graph.facebook.com/v2.3/" + mFacebookId + "/picture?type=large";
